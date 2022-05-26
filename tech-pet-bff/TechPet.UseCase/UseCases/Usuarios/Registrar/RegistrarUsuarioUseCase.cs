@@ -8,17 +8,15 @@ using TechPet.Identity.Entities;
 using TechPet.Identity.Interfaces;
 using TechPet.UseCase.Abstractions;
 
-namespace TechPet.UseCase.UseCases.Usuarios
+namespace TechPet.UseCase.UseCases.Usuarios.Registrar
 {
     public class RegistrarUsuarioUseCase : UseCaseCommand<RegistrarUsuarioCommand, UsuarioResult?>, IRegistrarUsuarioUseCase
     {
         private readonly IIdentityService _identityService;
-        private readonly ILogger<RegistrarUsuarioUseCase> _logger;
 
         public RegistrarUsuarioUseCase(INotificacaoService notificacaoService, IMediator mediator, IUnitOfWork unitOfWork, ILogger<RegistrarUsuarioUseCase> logger, IIdentityService identityService) : base(notificacaoService, mediator, unitOfWork, logger)
         {
             _identityService = identityService;
-            _logger = logger;
         }
 
         protected async override Task<UsuarioResult?> AoExecutarAsync(RegistrarUsuarioCommand request)

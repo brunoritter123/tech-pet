@@ -1,22 +1,16 @@
-﻿using MediatR;
-using Microsoft.Extensions.Logging;
-using TechPet.Data.Abstractions;
+﻿using Microsoft.Extensions.Logging;
 using TechPet.Domain.Abstractions.Notifications;
 
 namespace TechPet.UseCase.Abstractions
 {
-    public abstract class UseCaseCommand<TRequest, TResult> : IUseCase<TRequest, TResult>
+    public abstract class UseCaseQuery<TRequest, TResult> : IUseCase<TRequest, TResult>
     {
-        protected readonly ILogger<UseCaseCommand<TRequest, TResult>> _logger;
-        protected readonly IMediator _mediator;
+        protected readonly ILogger<UseCaseQuery<TRequest, TResult>> _logger;
         protected readonly INotificacaoService _notificacaoService;
-        private readonly IUnitOfWork _unitOfWork;
 
-        public UseCaseCommand(INotificacaoService notificacaoService, IMediator mediator, IUnitOfWork unitOfWork, ILogger<UseCaseCommand<TRequest, TResult>> logger)
+        public UseCaseQuery(INotificacaoService notificacaoService, ILogger<UseCaseQuery<TRequest, TResult>> logger)
         {
             _notificacaoService = notificacaoService;
-            _mediator = mediator;
-            _unitOfWork = unitOfWork;
             _logger = logger;
         }
 
@@ -27,8 +21,6 @@ namespace TechPet.UseCase.Abstractions
                 var result = await AoExecutarAsync(request);
 
                 if (_notificacaoService.ExisteNotificacao()) return result;
-
-                await _unitOfWork.CommitAsync();
 
                 return result;
 

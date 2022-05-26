@@ -11,5 +11,11 @@ namespace TechPet.Data.Repositories
         public UsuarioRepository(DbContext dbContext, INotificacaoService notificacaoService) : base(dbContext, notificacaoService)
         {
         }
+
+        public async Task<Usuario?> BuscarPorLoginAsync(string login)
+        {
+            if (string.IsNullOrEmpty(login)) return null;
+            return await _dbSet.AsNoTracking().SingleOrDefaultAsync(x => login.Equals(x.Login));
+        }
     }
 }

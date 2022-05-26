@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TechPet.UseCase.UseCases.Usuarios;
+using TechPet.UseCase.UseCases.Usuarios.Logar;
+using TechPet.UseCase.UseCases.Usuarios.Registrar;
 
 namespace TechPet.UseCase
 {
@@ -8,6 +9,7 @@ namespace TechPet.UseCase
         public static IServiceCollection AddBootstrapUseCase(this IServiceCollection service)
         {
             service.AddScoped<IRegistrarUsuarioUseCase, RegistrarUsuarioUseCase>();
+            service.AddScoped<ILogarUsuarioUseCase, LogarUsuarioUseCase>();
             return service;
         }
     }

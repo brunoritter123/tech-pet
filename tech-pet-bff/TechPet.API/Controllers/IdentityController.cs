@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using TechPet.API.Results;
 using TechPet.Domain.Entities.Usuarios;
 using TechPet.Domain.Entities.Usuarios.Commands.RegistrarUsuario;
+using TechPet.UseCase.Requests;
 using TechPet.UseCase.UseCases.Usuarios;
+using TechPet.UseCase.UseCases.Usuarios.Logar;
+using TechPet.UseCase.UseCases.Usuarios.Registrar;
 
 namespace TechPet.API.Controllers
 {
@@ -20,23 +23,28 @@ namespace TechPet.API.Controllers
             [FromServices] IRegistrarUsuarioUseCase useCase)
         {
             var result = await useCase.ExecutarAsync(request);
-
             return Created("Login", new ResultDefault<UsuarioResult>(result));
         }
 
-        //[HttpPost("Login")]
-        //public async Task<ActionResult> Login(UserLoginRequest userLogin)
-        //{
-        //    var result = await _usuarioService.LoginAsync(userLogin);
-        //    if (!result.Sucesso)
-        //        return Unauthorized(result.Erros.First());
+        [HttpPost("Login")]
+        [ProducesResponseType(typeof(ResultDefault<UsuarioResult>), StatusCodes.Status200OK)]
+        public async Task<ActionResult> Login(
+            [FromBody] UsuarioLoginRequest request,
+            [FromServices] ILogarUsuarioUseCase useCase)
+        {
+            var result = await useCase.ExecutarAsync(request);
+            return Ok(new ResultDefault<UsuarioResult>(result));
 
-        //    return Ok(new
-        //    {
-        //        token = GenerateJWToken(result.Resultado),
-        //        user = result.Resultado
-        //    });
-        //}
+            //var result = await _usuarioService.LoginAsync(userLogin);
+            //if (!result.Sucesso)
+            //    return Unauthorized(result.Erros.First());
+
+            //return Ok(new
+            //{
+            //    token = GenerateJWToken(result.Resultado),
+            //    user = result.Resultado
+            //});
+        }
 
         //[HttpPost("resetar-senha")]
         //public async Task<ActionResult> ResetarSenha(UserResetarSenhaRequest userResetarSenha)
