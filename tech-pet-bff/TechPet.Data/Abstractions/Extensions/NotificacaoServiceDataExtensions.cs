@@ -1,4 +1,4 @@
-﻿using TechPet.Domain.Abstractions;
+﻿using TechPet.Domain.Abstractions.Entities;
 using TechPet.Domain.Abstractions.Notifications;
 
 namespace TechPet.Data.Abstractions.Extensions
@@ -10,7 +10,9 @@ namespace TechPet.Data.Abstractions.Extensions
             Entity<T> entitidadeComErro)
             where T : struct
         {
-            notificacaoService.AddErro($"Não foi possível incluir '{entitidadeComErro.GetType()}', pois já existe '{entitidadeComErro}' com o identificador {entitidadeComErro.Id}", "Id");
+            notificacaoService.AddNotificacao(
+                $"Não foi possível incluir '{entitidadeComErro.GetType()}'",
+                $"Já existe '{entitidadeComErro}' com o identificador {entitidadeComErro.Id}");
         }
 
         public static void AddErroEntidadeNaoExistenteAoAlterar<T>(
@@ -18,7 +20,9 @@ namespace TechPet.Data.Abstractions.Extensions
             Entity<T> entitidadeComErro)
             where T : struct
         {
-            notificacaoService.AddErro($"Não foi possível alterar '{entitidadeComErro.GetType()}', pois não existe '{entitidadeComErro}' com o identificador {entitidadeComErro.Id}", "Id");
+            notificacaoService.AddNotificacao(
+                $"Não foi possível alterar '{entitidadeComErro.GetType()}'",
+                $"Não existe '{entitidadeComErro}' com o identificador {entitidadeComErro.Id}");
         }
     }
 }

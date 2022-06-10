@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0.29
+    container_name: mysql
+    volumes:
+      - dbmysql-volume:/var/lib/mysql
+      - ./dump:/docker-entrypoint-initdb.d
+    restart: always
+    ports:
+      - 3306:3306
+    expose:
+     - 3306
+    environment:
+     MYSQL_RANDOM_ROOT_PASSWORD: 1
+     MYSQL_USER: mysql
+     MYSQL_PASSWORD: 123456
+     MYSQL_DATABASE: tech-pet
+  mysql_tests:
+    image: mysql:8.0.29
+    container_name: mysql_tests
+    environment:
+     MYSQL_RANDOM_ROOT_PASSWORD: 1
+     MYSQL_USER: mysql
+     MYSQL_PASSWORD: 123456
+     MYSQL_DATABASE: tech-pet
+    ports:
+      - 3307:3306
+
+volumes:
+  dbmysql-volume:

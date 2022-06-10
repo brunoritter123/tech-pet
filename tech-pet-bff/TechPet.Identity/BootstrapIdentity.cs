@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using System.Text;
 using TechPet.Identity.Data;
 using TechPet.Identity.DTOs;
@@ -17,9 +18,12 @@ namespace TechPet.Identity
     {
         public static IServiceCollection AddBootstrapIdentity(this IServiceCollection service, IConfiguration configuration)
         {
-            service.AddScoped<IIdentityService, IdentityService>();
             ConfigureIdentity(service);
             ConfigureJwt(service, configuration);
+
+            service.AddScoped<IIdentityService, IdentityService>();
+            service.AddScoped<IJwtService, JwtService>();
+
             return service;
         }
 
@@ -41,10 +45,10 @@ namespace TechPet.Identity
             builder.AddSignInManager<SignInManager<User>>();
             builder.AddDefaultTokenProviders();
 
-            // services.AddAuthorization(options =>
-            // {
-            //     options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
-            // });
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
+            //});
         }
 
         private static void ConfigureJwt(IServiceCollection services, IConfiguration configuration)

@@ -1,12 +1,12 @@
-﻿using TechPet.Domain.Abstractions;
+﻿using TechPet.Domain.Abstractions.Entities;
 
 namespace TechPet.Domain.Entities.Usuarios
 {
     public class Usuario : Entity<Guid>
     {
-        public string Login { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
+        public string Login { get; private set; }
+        public string Nome { get; private set; }
+        public string Email { get; private set; }
 
         public Usuario(string login, string nome, string email)
         {
@@ -16,17 +16,10 @@ namespace TechPet.Domain.Entities.Usuarios
             Validar();
         }
 
-        public Usuario()
-        {
-            Login = null!;
-            Nome = null!;
-            Email = null!;
-        }
-
-        public UsuarioResult ToUsuarioResult()
-            => new UsuarioResult(Login, Nome, Email);
-
         public override bool Validar()
             => OnValidate(this, new UsuarioValidador());
+
+        public override NomeAmigavelDaEntitidade GetNomeDaEntitidadeAmigavel()
+            => new NomeAmigavelDaEntitidade("o", "os", "usuário", "usuários");
     }
 }

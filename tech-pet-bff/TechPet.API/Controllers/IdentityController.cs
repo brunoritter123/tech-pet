@@ -1,49 +1,38 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TechPet.API.Results;
+using TechPet.API.Responses;
 using TechPet.Domain.Entities.Usuarios;
 using TechPet.Domain.Entities.Usuarios.Commands.RegistrarUsuario;
-using TechPet.UseCase.Requests;
-using TechPet.UseCase.UseCases.Usuarios;
 using TechPet.UseCase.UseCases.Usuarios.Logar;
 using TechPet.UseCase.UseCases.Usuarios.Registrar;
+using TechPet.UseCase.Usuarios.Logar;
 
 namespace TechPet.API.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class IdentityController : ControllerBase
     {
         [HttpPost("Registrar")]
-        [ProducesResponseType(typeof(ResultDefault<UsuarioResult>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(UsuarioResult), StatusCodes.Status201Created)]
         public async Task<IActionResult> Registrar(
             [FromBody] RegistrarUsuarioCommand request,
             [FromServices] IRegistrarUsuarioUseCase useCase)
         {
-            var result = await useCase.ExecutarAsync(request);
-            return Created("Login", new ResultDefault<UsuarioResult>(result));
+            return Created("Login", await useCase.ExecutarAsync(request));
         }
 
+        [AllowAnonymous]
         [HttpPost("Login")]
-        [ProducesResponseType(typeof(ResultDefault<UsuarioResult>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(LogarUsuarioResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult> Login(
-            [FromBody] UsuarioLoginRequest request,
+            [FromBody] LogarUsuarioRequest request,
             [FromServices] ILogarUsuarioUseCase useCase)
         {
-            var result = await useCase.ExecutarAsync(request);
-            return Ok(new ResultDefault<UsuarioResult>(result));
-
-            //var result = await _usuarioService.LoginAsync(userLogin);
-            //if (!result.Sucesso)
-            //    return Unauthorized(result.Erros.First());
-
-            //return Ok(new
-            //{
-            //    token = GenerateJWToken(result.Resultado),
-            //    user = result.Resultado
-            //});
+            return Ok(await useCase.ExecutarAsync(request));
         }
 
         //[HttpPost("resetar-senha")]

@@ -1,10 +1,10 @@
 ﻿using TechPet.Domain.Entities.Usuarios;
 using TechPet.UseCase.Abstractions;
-using TechPet.UseCase.Requests;
+using TechPet.UseCase.Usuarios.Logar;
 
 namespace TechPet.UseCase.UseCases.Usuarios.Logar
 {
-    public interface ILogarUsuarioUseCase : IUseCase<UsuarioLoginRequest, UsuarioResult?>
+    public interface ILogarUsuarioUseCase : IUseCase<LogarUsuarioRequest, LogarUsuarioResponse?>
     {
     }
 }

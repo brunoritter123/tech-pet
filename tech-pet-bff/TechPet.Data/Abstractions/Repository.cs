@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TechPet.Data.Abstractions.Extensions;
-using TechPet.Domain.Abstractions;
+using TechPet.Domain.Abstractions.Entities;
 using TechPet.Domain.Abstractions.Notifications;
 using TechPet.Domain.Abstractions.Repository;
 

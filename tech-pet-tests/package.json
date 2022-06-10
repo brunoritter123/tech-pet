@@ -1,0 +1,13 @@
+{
+  "name": "tech-pet-tests",
+  "version": "1.0.0",
+  "description": "Repositorio de para testes funcionais",
+  "scripts": {
+    "start": "cypress open",
+    "test": "cypress run"
+  },
+  "author": "Bruno Ritter",
+  "devDependencies": {
+    "cypress": "^9.7.0"
+  }
+}

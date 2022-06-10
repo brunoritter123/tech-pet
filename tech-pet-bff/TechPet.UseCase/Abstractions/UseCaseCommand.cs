@@ -35,7 +35,7 @@ namespace TechPet.UseCase.Abstractions
             }
             catch (Exception ex)
             {
-                _notificacaoService.AddErro(ex);
+                _notificacaoService.AddNotificacaoErroInterno();
                 _logger.LogError(ex, "Erro inesperado ao processar a requisição.");
 
                 return default;

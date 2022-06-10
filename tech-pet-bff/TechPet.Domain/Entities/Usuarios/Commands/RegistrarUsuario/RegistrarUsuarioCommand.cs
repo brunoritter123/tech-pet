@@ -18,10 +18,5 @@ namespace TechPet.Domain.Entities.Usuarios.Commands.RegistrarUsuario
         [Required]
         [StringLength(10, MinimumLength = 4)]
         public string Senha { get; set; } = String.Empty;
-
-        public Usuario ToUsuario()
-        {
-            return new Usuario(Login, Nome, Email);
-        }
     }
 }

@@ -21,6 +21,7 @@ namespace TechPet.Identity.Data.Maps
                 .WithMany(r => r.UserRoles)
                 .HasForeignKey(cr => cr.RoleId)
                 .IsRequired();
+
         }
     }
 }

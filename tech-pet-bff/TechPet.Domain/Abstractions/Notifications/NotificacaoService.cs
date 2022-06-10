@@ -4,49 +4,52 @@ namespace TechPet.Domain.Abstractions.Notifications
 {
     public class NotificacaoService : INotificacaoService
     {
-        private List<ValidationFailure> _erros = new List<ValidationFailure>();
-        private NotificacaoTipo? _tipoErro = default;
+        private List<Notificacao> _notificacoes = new List<Notificacao>();
+        private NotificacaoTipo? _tipoNotificacao = default;
 
-        public void AddErro(string mensagem, NotificacaoTipo tipo = NotificacaoTipo.Validacao)
+        public void AddNotificacao(string mensagem, string detalhesDaMensagem = "", NotificacaoTipo tipo = NotificacaoTipo.Validacao)
         {
-            _erros.Add(new ValidationFailure(default, mensagem));
-            SetTipoErro(tipo);
-        }
-
-        public void AddErro(string mensagem, string propriedade, NotificacaoTipo tipo = NotificacaoTipo.Validacao)
-        {
-            _erros.Add(new ValidationFailure(propriedade, mensagem));
+            _notificacoes.Add(new Notificacao(mensagem, detalhesDaMensagem, tipo));
             SetTipoErro(tipo);
         }
 
         private void SetTipoErro(NotificacaoTipo novoTipo)
         {
-            if (!_tipoErro.HasValue)
+            if (!_tipoNotificacao.HasValue)
             {
-                _tipoErro = novoTipo;
+                _tipoNotificacao = novoTipo;
                 return;
             }
-            _tipoErro = novoTipo > _tipoErro ? novoTipo : _tipoErro;
+            _tipoNotificacao = novoTipo > _tipoNotificacao ? novoTipo : _tipoNotificacao;
         }
 
         public bool ExisteNotificacao()
-            => _erros.ElementAtOrDefault(0) != null;
+            => _notificacoes.ElementAtOrDefault(0) != null;
 
-        public IEnumerable<ValidationFailure> GetErros()
-            => _erros;
+        public IEnumerable<Notificacao> GetNotificacoes()
+            => _notificacoes;
 
-        public NotificacaoTipo? GetTipoErro()
-            => _tipoErro;
+        public NotificacaoTipo? GetTipoNotificacao()
+            => _tipoNotificacao;
 
-        public void AddErro(Exception ex)
+        public void AddNotificacaoErroInterno()
         {
-            _erros.Add(new ValidationFailure(default, ex.Message));
+            _notificacoes.Add(new Notificacao(
+                "Erro internado da aplicação",
+                "Entre em contato com o administrador do sistema para obter suporte.",
+                NotificacaoTipo.ErroInterno));
             SetTipoErro(NotificacaoTipo.ErroInterno);
         }
 
-        public void AddErro(IEnumerable<ValidationFailure> erros, NotificacaoTipo tipo = NotificacaoTipo.Validacao)
+        public void AddNotificacao(string mensagem, string detalhesDaMensagem, IEnumerable<ValidationFailure> erros, NotificacaoTipo tipo = NotificacaoTipo.Validacao)
         {
-            _erros.AddRange(erros);
+            var notificacoes = erros.Select(erro => new Notificacao(
+                $"Campo '{erro.PropertyName}' inválido.",
+                erro.ErrorMessage,
+                tipo));
+
+            _notificacoes.AddRange(notificacoes);
+            _notificacoes.Add(new Notificacao(mensagem, detalhesDaMensagem, tipo));
             SetTipoErro(tipo);
         }
     }

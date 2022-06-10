@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TechPet.Data.Maps;
+using TechPet.Data.Maps.Admin;
 using TechPet.Domain.Entities.Usuarios;
 using TechPet.Identity.Data;
 
@@ -9,7 +10,6 @@ namespace TechPet.Data.Context
     {
         public TechPetContext(DbContextOptions<TechPetContext> options) : base(options)
         {
-            //AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
@@ -19,6 +19,7 @@ namespace TechPet.Data.Context
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new UsuarioMap());
+            modelBuilder.ApplyConfiguration(new EmpresaMap());
         }
     }
 }

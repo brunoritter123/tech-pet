@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using TechPet.API.Results;
 using Newtonsoft.Json;
+using TechPet.API.Responses;
 
 namespace TechPet.API.Filters
 {
@@ -16,10 +16,10 @@ namespace TechPet.API.Filters
 
         public void OnException(ExceptionContext context)
         {
-            var result = new ResultDefault<string>(context.Exception.Message);
+            var response = new ErrorResponse(context.Exception);
             context.Result = new ContentResult
             {
-                Content = JsonConvert.SerializeObject(result),
+                Content = JsonConvert.SerializeObject(response),
                 StatusCode = 500,
                 ContentType = "application/json"
             };

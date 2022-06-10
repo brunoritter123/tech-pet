@@ -1,4 +1,6 @@
-﻿namespace TechPet.Domain.Abstractions.Repository
+﻿using TechPet.Domain.Abstractions.Entities;
+
+namespace TechPet.Domain.Abstractions.Repository
 {
     public interface IReadRepository<TEntity, in TId>
         where TEntity : Entity

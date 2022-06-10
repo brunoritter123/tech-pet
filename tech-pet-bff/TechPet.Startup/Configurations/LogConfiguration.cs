@@ -3,11 +3,6 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Exceptions;
 using Serilog.Filters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TechPet.Startup.Configurations
 {
@@ -16,10 +11,11 @@ namespace TechPet.Startup.Configurations
         public static void AddSerilog(IConfiguration configuration)
         {
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Information)
+                .MinimumLevel.Warning()
+                .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
                 .Enrich.FromLogContext()
                 .Enrich.WithExceptionDetails()
-                .Enrich.WithCorrelationId()
+                .Enrich.WithCorrelationIdHeader()
                 .Enrich.WithProperty("ApplicationName", $"TechPet - {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}")
                 .Filter.ByExcluding(Matching.FromSource("Microsoft.AspNetCore.StaticFiles"))
                 .Filter.ByExcluding(z => z.MessageTemplate.Text.Contains("Business error"))

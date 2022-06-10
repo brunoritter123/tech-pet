@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TechPet.Domain.Abstractions;
+using TechPet.Domain.Abstractions.Entities;
 using TechPet.Domain.Abstractions.Repository;
 
 namespace TechPet.Data.Abstractions
