@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TechPet.Application\TechPet.Application.csproj" />
     <ProjectReference Include="..\TechPet.Data\TechPet.Data.csproj" />
     <ProjectReference Include="..\TechPet.Domain\TechPet.Domain.csproj" />
     <ProjectReference Include="..\TechPet.Identity\TechPet.Identity.csproj" />

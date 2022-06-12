@@ -9,5 +9,6 @@ namespace TechPet.Data.Abstractions
     public interface IUnitOfWork
     {
         Task CommitAsync();
+        Task CommitAsync(string nomeBancoDeDados);
     }
 }

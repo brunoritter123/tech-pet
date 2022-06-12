@@ -21,6 +21,11 @@ namespace TechPet.Identity
             ConfigureIdentity(service);
             ConfigureJwt(service, configuration);
 
+            service.AddDbContext<IdentityContext>(options =>
+                options.UseMySql(
+                    configuration.GetSection("ConnectionStrings:MysqlIdentity").Value,
+                    new MySqlServerVersion(new Version(8, 0, 29))));
+
             service.AddScoped<IIdentityService, IdentityService>();
             service.AddScoped<IJwtService, JwtService>();
 
@@ -39,7 +44,7 @@ namespace TechPet.Identity
             });
 
             builder = new IdentityBuilder(builder.UserType, typeof(Role), builder.Services);
-            builder.AddEntityFrameworkStores<DbContext>();
+            builder.AddEntityFrameworkStores<IdentityContext>();
             builder.AddRoleValidator<RoleValidator<Role>>();
             builder.AddRoleManager<RoleManager<Role>>();
             builder.AddSignInManager<SignInManager<User>>();

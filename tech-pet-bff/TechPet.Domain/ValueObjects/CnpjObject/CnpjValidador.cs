@@ -7,7 +7,8 @@ namespace TechPet.Domain.ValueObjects.CnpjObject
         public CnpjValidador()
         {
             RuleFor(x => x.Valor)
-               .Length(14)
+               .Length(Cnpj.TamanhoCnpj)
+               .WithMessage($"CNPJ deve conter {Cnpj.TamanhoCnpj} digitos.")
                .When(x => x.Valor != string.Empty)
                .Matches("[0-9]+")
                .WithMessage("CNPJ só pode conter números.");

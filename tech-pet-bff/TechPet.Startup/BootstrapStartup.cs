@@ -6,6 +6,7 @@ using TechPet.Domain;
 using TechPet.Identity;
 using TechPet.Startup.Configurations;
 using TechPet.UseCase;
+using TechPet.Application;
 
 namespace TechPet.Startup
 {
@@ -33,6 +34,7 @@ namespace TechPet.Startup
         {
             builder.Services.AddBootstrapData(builder.Configuration);
             builder.Services.AddBootstrapDomain();
+            builder.Services.AddBootstrapApplication();
             builder.Services.AddBootstrapUseCase();
             builder.Services.AddBootstrapIdentity(builder.Configuration);
             builder.Services.AddBootstrapIntegrationTests();

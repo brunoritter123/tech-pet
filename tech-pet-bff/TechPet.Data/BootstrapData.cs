@@ -14,10 +14,7 @@ namespace TechPet.Data
         public static IServiceCollection AddBootstrapData(this IServiceCollection service,
             IConfiguration configuration)
         {
-            service.AddDbContext<TechPetContext>(options =>
-                options.UseMySql(
-                    configuration.GetSection("ConnectionStrings:Mysql").Value,
-                    new MySqlServerVersion(new Version(8,0,29))));
+            service.AddDbContext<TechPetContext>();
 
             service.AddScoped<DbContext, TechPetContext>();
             service.AddScoped<IUsuarioRepository, UsuarioRepository>();

@@ -45,15 +45,16 @@ namespace TechPet.UseCase.UseCases.Usuarios.Logar
             }
 
 
-            var usuario = await _repository.BuscarPorLoginAsync(request.Login);
-            if (usuario is null)
-            {
-                _notificacaoService.AddNotificacaoErroInterno();
-                _logger.LogError($"Não foi possível encontrar um perfil para o usuário: {request.Login}");
-                return null;
-            }
+            //var usuario = await _repository.BuscarPorLoginAsync(request.Login);
+            //if (usuario is null)
+            //{
+            //    _notificacaoService.AddNotificacaoErroInterno();
+            //    _logger.LogError($"Não foi possível encontrar um perfil para o usuário: {request.Login}");
+            //    return null;
+            //}
 
-            var usuarioResult = usuario.ToUsuarioResult();
+            //var usuarioResult = usuario.ToUsuarioResult();
+            var usuarioResult = new UsuarioResult(userResult.Resultado.UserName, userResult.Resultado.Nome, userResult.Resultado.Email);
 
             var roleAdmini = SeUsuarioEAdmini(userResult.Resultado.UserName) ? new List<string>() { "Admin" } : null;
             var token = _jwtService.GenerateJWToken(userResult.Resultado, roleAdmini);

@@ -7,7 +7,7 @@ namespace TechPet.Domain.Entities.Empresas.Mappers
     public static class EmpresaMapper
     {
         public static Empresa ToEmpresa(this IncluirEmpresaCommand command)
-            => new Empresa(command.Nome, command.NomeFantasia, command.Cnpj);
+            => new Empresa(command.Codigo, command.Nome, command.NomeFantasia, command.Cnpj);
 
         public static EmpresaResult ToEmpresaResult(this Empresa empresa)
             => new EmpresaResult(empresa.Nome, empresa.NomeFantasia, empresa.Cnpj.Valor);

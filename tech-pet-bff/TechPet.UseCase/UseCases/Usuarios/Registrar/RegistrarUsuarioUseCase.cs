@@ -7,19 +7,17 @@ using TechPet.Domain.Entities.Usuarios.Commands.RegistrarUsuario;
 using TechPet.Identity.Entities;
 using TechPet.Identity.Interfaces;
 using TechPet.UseCase.Abstractions;
-using TechPet.UseCase.Services.Identity.NotifyIdentityErrors;
+using TechPet.Application.Extensions.Identity.NotifyIdentityErrors;
 
 namespace TechPet.UseCase.UseCases.Usuarios.Registrar
 {
     public class RegistrarUsuarioUseCase : UseCaseCommand<RegistrarUsuarioCommand, UsuarioResult?>, IRegistrarUsuarioUseCase
     {
         private readonly IIdentityService _identityService;
-        private readonly INotifyIdentityErrorsService _notifyIdentityErrorsService;
 
-        public RegistrarUsuarioUseCase(INotificacaoService notificacaoService, IMediator mediator, IUnitOfWork unitOfWork, ILogger<RegistrarUsuarioUseCase> logger, IIdentityService identityService, INotifyIdentityErrorsService notifyIdentityErrorsService) : base(notificacaoService, mediator, unitOfWork, logger)
+        public RegistrarUsuarioUseCase(INotificacaoService notificacaoService, IMediator mediator, IUnitOfWork unitOfWork, ILogger<RegistrarUsuarioUseCase> logger, IIdentityService identityService) : base(notificacaoService, mediator, unitOfWork, logger)
         {
             _identityService = identityService;
-            _notifyIdentityErrorsService = notifyIdentityErrorsService;
         }
 
         protected async override Task<UsuarioResult?> AoExecutarAsync(RegistrarUsuarioCommand request)
@@ -37,7 +35,7 @@ namespace TechPet.UseCase.UseCases.Usuarios.Registrar
             var result = await _identityService.CriarUsuarioAsync(userIdentity, request.Senha);
             if (!result.Sucesso)
             {
-                _notifyIdentityErrorsService.AddNotifications(result.Erros);
+                _notificacaoService.AddNotificationsIdentity(result.Erros, userIdentity, _logger);
                 return null;
             }
 

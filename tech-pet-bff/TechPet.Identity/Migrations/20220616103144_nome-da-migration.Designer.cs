@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TechPet.Data.Context;
+using TechPet.Identity.Data;
 
 #nullable disable
 
-namespace TechPet.Data.Migrations
+namespace TechPet.Identity.Migrations
 {
-    [DbContext(typeof(TechPetContext))]
-    [Migration("20220611202007_nome-da-migration")]
+    [DbContext(typeof(IdentityContext))]
+    [Migration("20220616103144_nome-da-migration")]
     partial class nomedamigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,51 +105,6 @@ namespace TechPet.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TechPet.Domain.Entities.Empresas.Empresa", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("NomeFantasia")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Empresa", (string)null);
-                });
-
-            modelBuilder.Entity("TechPet.Domain.Entities.Usuarios.Usuario", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Login")
-                        .IsUnique();
-
-                    b.ToTable("Usuario", (string)null);
-                });
-
             modelBuilder.Entity("TechPet.Identity.Entities.Role", b =>
                 {
                     b.Property<Guid>("Id")
@@ -185,6 +140,10 @@ namespace TechPet.Data.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("CodigoEmpresa")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -294,30 +253,6 @@ namespace TechPet.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TechPet.Domain.Entities.Empresas.Empresa", b =>
-                {
-                    b.OwnsOne("TechPet.Domain.ValueObjects.CnpjObject.Cnpj", "Cnpj", b1 =>
-                        {
-                            b1.Property<Guid>("EmpresaId")
-                                .HasColumnType("char(36)");
-
-                            b1.Property<string>("Valor")
-                                .IsRequired()
-                                .HasColumnType("longtext")
-                                .HasColumnName("Cnpj");
-
-                            b1.HasKey("EmpresaId");
-
-                            b1.ToTable("Empresa");
-
-                            b1.WithOwner()
-                                .HasForeignKey("EmpresaId");
-                        });
-
-                    b.Navigation("Cnpj")
                         .IsRequired();
                 });
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -11,9 +12,11 @@ namespace TechPet.Identity.Services
     public class JwtService : IJwtService
     {
         private readonly IConfiguration _config;
-        public JwtService(IConfiguration config)
+        private readonly IHttpContextAccessor _accessor;
+        public JwtService(IConfiguration config, IHttpContextAccessor accessor)
         {
             _config = config;
+            _accessor = accessor;
         }
 
         public string GenerateJWToken(User user, IEnumerable<string>? rolesAdicionais)
@@ -22,7 +25,8 @@ namespace TechPet.Identity.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserName),
                 new Claim(ClaimTypes.Name, user.Nome),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.UserData, user.CodigoEmpresa )
             };
 
             foreach (var role in user.UserRoles.Where(x => x != null))
@@ -52,6 +56,12 @@ namespace TechPet.Identity.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public string? GetUserData()
+        {
+            
+            return _accessor?.HttpContext?.User.FindFirst(ClaimTypes.UserData)?.Value;
         }
     }
 }

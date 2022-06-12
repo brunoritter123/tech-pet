@@ -20,13 +20,13 @@ namespace TechPet.UseCase.Abstractions
             _logger = logger;
         }
 
-        public async Task<TResult?> ExecutarAsync(TRequest request)
+        public virtual async Task<TResult?> ExecutarAsync(TRequest request)
         {
             try
             {
                 var result = await AoExecutarAsync(request);
 
-                if (_notificacaoService.ExisteNotificacao()) return result;
+                if (_notificacaoService.ExisteNotificacao()) return default;
 
                 await _unitOfWork.CommitAsync();
 

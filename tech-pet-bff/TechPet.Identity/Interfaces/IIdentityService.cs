@@ -12,5 +12,6 @@ namespace TechPet.Identity.Interfaces
         Task<ResultadoIdentityDto> ValidarSenhaAsync(User user, string senha);
         Task<string> GerarTokenParaResetDeSenhaAsync(User user);
         Task<ResultadoIdentityDto> ResetarSenhaAsync(User user, string token, string novaSenha);
+        Task<ResultadoIdentityDto> ExcluirUsuarioAsync(User user);
     }
 }

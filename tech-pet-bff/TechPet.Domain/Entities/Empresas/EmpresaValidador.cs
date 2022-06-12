@@ -7,11 +7,19 @@ namespace TechPet.Domain.Entities.Empresas
     {
         public EmpresaValidador()
         {
+            RuleFor(x => x.Codigo)
+                .NotEmpty()
+                .MaximumLength(Empresa.TamanhoMaximoCodigo)
+                .Matches("[a-zA-Z0-9]+")
+                .WithMessage("Código só pode conter letras e números");
+
             RuleFor(x => x.NomeFantasia)
-                .NotEmpty();
+                .NotEmpty()
+                .MaximumLength(Empresa.TamanhoMaximoNomeFantasia);
 
             RuleFor(x => x.Nome)
-                .NotEmpty();
+                .NotEmpty()
+                .MaximumLength(Empresa.TamanhoMaximoNome);
 
             RuleFor(x => x.Cnpj)
                 .NotNull()

@@ -9,7 +9,7 @@ using TechPet.UseCase.Abstractions;
 
 namespace TechPet.UseCase.UseCases.Empresas.IncluirEmpresa
 {
-    public interface IIncluirEmpresaUseCase: IUseCase<IncluirEmpresaCommand, EmpresaResult?>
+    public interface IIncluirEmpresaUseCase: IUseCase<IncluirEmpresaRequest, EmpresaResult?>
     {
     }
 }

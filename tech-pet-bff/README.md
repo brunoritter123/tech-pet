@@ -22,9 +22,14 @@ Execute `dotnet watch run --project TechPet.API/` para iniciar o servidor. Naveg
 
 ## Criando migrations
 Execute `dotnet ef migrations add "nome-da-migration" --project ./TechPet.Data/ --startup-project ./TechPet.API/` para gerar uma nova *migration* do banco de dados.
+dotnet ef migrations add "nome-da-migration" --project ./TechPet.Identity/ --startup-project ./TechPet.API/ --context IdentityContext
+dotnet ef migrations add "nome-da-migration" --project ./TechPet.Data/ --startup-project ./TechPet.API/ --context TechPetContext
+
 
 ## Atualizando o banco de dados
 Execute `dotnet ef database update --project ./TechPet.Data/ --startup-project ./TechPet.API/` atulizando o banco de banco de dados com as migrations do projeto.
+dotnet ef database update --project ./TechPet.Identity/ --startup-project ./TechPet.API/ --context IdentityContext
+dotnet ef database update --project ./TechPet.Data/ --startup-project ./TechPet.API/ --context TechPetContext
 
 ## Build
 Execute `dotnet build tech-pet-bff.sln` para contruir os executaveis do projeto.

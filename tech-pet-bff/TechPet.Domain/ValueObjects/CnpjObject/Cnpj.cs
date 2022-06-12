@@ -4,6 +4,7 @@ namespace TechPet.Domain.ValueObjects.CnpjObject
 {
     public class Cnpj : ValueObject
     {
+        public const int TamanhoCnpj = 14;
         public string Valor { get; private set; }
 
         public Cnpj(string valor = "")

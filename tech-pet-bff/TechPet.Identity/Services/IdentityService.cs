@@ -52,7 +52,26 @@ namespace TechPet.Identity.Services
 
         public async Task<ResultadoIdentityDto> CriarUsuarioAsync(User user, string senha)
         {
+            if (string.IsNullOrWhiteSpace(user.CodigoEmpresa))
+            {
+                return new ResultadoIdentityDto(new ErroIdentityDto("EntityInvalid", "Código da empresa é obrigatório."));
+            }
+
             var result = await _userManager.CreateAsync(user, senha);
+            if (result.Succeeded)
+                return new ResultadoIdentityDto();
+
+            var erros = new List<ErroIdentityDto>();
+            foreach (var erro in result.Errors)
+            {
+                erros.Add(new ErroIdentityDto(erro.Code, erro.Description));
+            }
+            return new ResultadoIdentityDto(erros);
+        }
+
+        public async Task<ResultadoIdentityDto> ExcluirUsuarioAsync(User user)
+        {
+            var result = await _userManager.DeleteAsync(user);
             if (result.Succeeded)
                 return new ResultadoIdentityDto();
 
