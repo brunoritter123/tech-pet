@@ -1,0 +1,13 @@
+<po-page-default [p-actions]="acoes" [p-breadcrumb]="breadcrumb">
+  <po-stepper #stepper (p-change-step)="onChangeStep()">
+      <po-step #stepEntrada p-label="Entrada">
+        <app-step-entrada-veiculo [stepper]="stepper"></app-step-entrada-veiculo>
+      </po-step>
+      <po-step #stepOrcamento p-label="Orçamento">
+        <app-step-orcamento [stepper]="stepper"></app-step-orcamento>
+      </po-step>
+      <po-step #stepConclusao p-label="Conclusão">
+        <app-step-conclusao [stepper]="stepper" (confirmSetp)="onConcluirCadastro()"></app-step-conclusao>
+      </po-step>
+  </po-stepper>
+</po-page-default>

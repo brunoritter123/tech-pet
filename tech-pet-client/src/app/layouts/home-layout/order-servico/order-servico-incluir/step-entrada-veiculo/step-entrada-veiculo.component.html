@@ -1,0 +1,123 @@
+<po-widget
+  class="po-md-12"
+>
+  <form #stepEntraVeiculoform="ngForm">
+    <po-divider p-label="Entrada do Veiculo"></po-divider>
+    <div class="po-row">
+      <po-input
+        class="po-md-3"
+        name="placa"
+        [(ngModel)]="placa"
+        p-clean
+        p-label="Placa"
+        p-required
+        p-placeholder="ABC-1D23"
+        p-mask="ZZZ-9Z99"
+        p-icon="po-icon-steering-wheel"
+        (ngModelChange)="placa = $event.toUpperCase()">
+        [p-auto-focus]="true">
+      </po-input>
+      <po-input
+        class="po-md-3"
+        name="veiculo"
+        [(ngModel)]="veiculo"
+        p-label="Veiculo"
+        [p-optional] = "true"
+        p-clean
+        p-icon="po-icon-truck"
+        p-placeholder="Ford KA 2019">
+      </po-input>
+      <po-input
+        class="po-md-3"
+        name="cor"
+        [(ngModel)]="cor"
+        p-label="Cor"
+        p-clean
+        [p-optional] = "true"
+        p-icon="po-icon-picker"
+        p-placeholder="Prata">
+      </po-input>
+      <po-number
+        class="po-md-3"
+        name="kmAtual"
+        [(ngModel)]="kmAtual"
+        p-label="Km Atual"
+        p-step="1"
+        p-icon="po-icon-gas"
+        [p-optional] = "true">
+      </po-number>
+    </div>
+    <div class="po-row">
+      <po-input
+        class="po-md-6"
+        name="responsavelAvaliacao"
+        p-clean
+        [(ngModel)]="responsavelAvaliacao"
+        p-icon="po-icon-user"
+        p-label="Responsável pela Avaliação"
+        [p-optional] = "true">
+      </po-input>
+    </div>
+    <div class="po-row">
+      <po-textarea
+        class="po-md-6"
+        name="descricaoDoProblema"
+        [(ngModel)]="descricaoDoProblema"
+        p-label="Descrição do Problema"
+        p-help="Descrição do problema informada pelo cliente"
+        [p-optional] = "true">
+      </po-textarea>
+      <po-textarea
+        class="po-md-6"
+        name="observacoesInternas"
+        [(ngModel)]="observacoesInternas"
+        p-label="Observações Internas"
+        p-help="Observações importantes que não vão sair na impressão da ordem de serviço"
+        [p-optional] = "true">
+      </po-textarea>
+    </div>
+    <po-divider p-label="Cliente/Contato"></po-divider>
+    <div class="po-row">
+      <po-input
+        class="po-md-4"
+        name="nome"
+        p-clean
+        [(ngModel)]="nome"
+        p-icon="po-icon-user"
+        p-label="Nome do Cliente"
+        [p-optional] = "true">
+      </po-input>
+      <po-input
+        class="po-md-4"
+        name="telefone"
+        [(ngModel)]="telefone"
+        p-clean
+        p-label="Telefone"
+        [p-optional] = "true"
+        p-placeholder="(99)-99999-9999"
+        p-mask="(99)-99999-9999"
+        p-icon="po-icon-telephone">
+        [p-auto-focus]="true">
+      </po-input>
+      <po-email
+        class="po-md-4"
+        [p-optional] = "true"
+        name="email"
+        [(ngModel)]="email"
+        p-label="Email"
+        p-clean>
+      </po-email>
+    </div>
+
+    <div class="po-row">
+      <po-textarea
+        class="po-md-6"
+        name="observacoesCliente"
+        [(ngModel)]="observacoesCliente"
+        p-label="Observações do Cliente"
+        p-help="Observações importantes sobre o cliente (não será exibida na impressão)"
+        [p-optional] = "true">
+      </po-textarea>
+    </div>
+  </form>
+</po-widget>

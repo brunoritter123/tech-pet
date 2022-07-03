@@ -1,0 +1,73 @@
+<po-widget
+  class="po-md-12"
+>
+  <form #stepClienteContatoform="ngForm">
+    <div class="po-row">
+      <po-info
+        class="po-md-4 po-hidden-sm"
+        name="conclusaoServicos"
+        [p-value]="valorServicos.toString()"
+        p-label="Serviços"
+        p-readonly>
+      </po-info>
+      <po-decimal
+        class="po-md-4 po-sm-6"
+        name="conclusaoDescontoServicos"
+        [p-decimals-length]="2"
+        p-label="% Desconto">
+      </po-decimal>
+      <po-decimal
+        class="po-md-4 po-sm-6"
+        name="conclusaoServicosValorFinal"
+        [p-decimals-length]="2"
+        p-icon="po-icon-finance"
+        p-label="Valor Total Serviços">
+      </po-decimal>
+    </div>
+    <div class="po-row">
+      <po-info
+        class="po-md-4 po-hidden-sm"
+        name="conclusaoProdutos"
+        [p-value]="valorServicos.toString()"
+        p-label="Produtos"
+        p-readonly>
+      </po-info>
+      <po-decimal
+        class="po-md-4 po-sm-6"
+        name="conclusaoDescontoProdutos"
+        [p-decimals-length]="2"
+        p-label="% Desconto">
+      </po-decimal>
+      <po-decimal
+        class="po-md-4 po-sm-6"
+        name="conclusaoProdutosValorFinal"
+        [p-decimals-length]="2"
+        p-icon="po-icon-finance"
+        p-label="Valor final">
+      </po-decimal>
+    </div>
+    <po-divider></po-divider>
+    <div class="po-row">
+      <po-info
+        class="po-md-4  po-hidden-sm"
+        name="conclusaoTotal"
+        [p-value]="valorServicos.toString()"
+        p-label="Valor Total"
+        p-readonly>
+      </po-info>
+      <po-decimal
+        class="po-md-4 po-sm-6"
+        name="conclusaoDescontoTotal"
+        [p-decimals-length]="2"
+        p-label="% Desconto">
+      </po-decimal>
+      <po-decimal
+        class="po-md-4 po-sm-6"
+        name="conclusaoTotalValorFinal"
+        [p-decimals-length]="2"
+        p-icon="po-icon-finance"
+        p-label="Valor final">
+      </po-decimal>
+    </div>
+  </form>
+</po-widget>
