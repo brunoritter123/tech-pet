@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TechPet.Domain.Entities.Empresas.Commands.IncluirEmpresa;
 using TechPet.Domain.Entities.Empresas.Queries.BuscarEmpresa;
 using TechPet.Domain.Entities.Empresas.Queries.ListarEmpresa;
 using TechPet.Domain.Entities.Empresas.Results;
@@ -16,7 +14,6 @@ namespace TechPet.API.Controllers
     [ApiController]
     public class EmpresaController : ControllerBase
     {
-
         [HttpPost()]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(EmpresaResult), StatusCodes.Status201Created)]
@@ -34,7 +31,7 @@ namespace TechPet.API.Controllers
             [FromBody] ListarEmpresaQuery request,
             [FromServices] IMediator mediator)
         {
-            return Ok(mediator.Send(request));
+            return Ok(await mediator.Send(request));
         }
 
         [HttpGet("{id}")]
@@ -44,7 +41,7 @@ namespace TechPet.API.Controllers
             Guid id,
             [FromServices] IMediator mediator)
         {
-            return Ok(mediator.Send(new BuscarEmpresaQuery(id)));
+            return Ok(await mediator.Send(new BuscarEmpresaQuery(id)));
         }
     }
 }

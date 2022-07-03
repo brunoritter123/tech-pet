@@ -1,4 +1,5 @@
 ﻿using TechPet.Domain.Abstractions.Entities;
+using TechPet.Domain.Abstractions.Paginacao;
 
 namespace TechPet.Domain.Abstractions.Repository
 {
@@ -11,5 +12,7 @@ namespace TechPet.Domain.Abstractions.Repository
         Task<TEntity?> BuscarPorIdAsync(TId id);
 
         Task<TEntity?> BuscarPorIdAsTrackingAsync(TId id);
+
+        Task<Page<TEntity>> ListarAsync(int page = 1, int pageSize = 10000, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

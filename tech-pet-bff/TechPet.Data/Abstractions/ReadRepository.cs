@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TechPet.Data.Context;
 using TechPet.Domain.Abstractions.Entities;
+using TechPet.Domain.Abstractions.Paginacao;
 using TechPet.Domain.Abstractions.Repository;
 
 namespace TechPet.Data.Abstractions
@@ -9,7 +11,8 @@ namespace TechPet.Data.Abstractions
         where TId : struct
     {
         protected readonly DbSet<TEntity> _dbSet;
-        protected ReadRepository(DbContext dbContext)
+
+        protected ReadRepository(TechPetContext dbContext)
         {
             _dbSet = dbContext.Set<TEntity>();
         }
@@ -29,5 +32,16 @@ namespace TechPet.Data.Abstractions
 
         public virtual Task<bool> ExisteAsync(TId id)
             => _dbSet.AnyAsync(x => id.Equals(x.Id));
+
+        public virtual async Task<Page<TEntity>> ListarAsync(int page = 1, int pageSize = 10000, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var result = await _dbSet
+                .Skip(((page - 1) * pageSize))
+                .Take((pageSize + 1))
+                .OrderBy(x => x.Id)
+                .ToListAsync(cancellationToken);
+
+            return new Page<TEntity>(result, pageSize);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TechPet.Data.Abstractions.Extensions;
+using TechPet.Data.Context;
 using TechPet.Domain.Abstractions.Entities;
 using TechPet.Domain.Abstractions.Notifications;
 using TechPet.Domain.Abstractions.Repository;
@@ -12,7 +13,7 @@ namespace TechPet.Data.Abstractions
     {
         protected readonly DbContext _dbContext;
         protected readonly INotificacaoService _notificacaoService;
-        protected Repository(DbContext dbContext, INotificacaoService notificacaoService) : base(dbContext)
+        protected Repository(TechPetContext dbContext, INotificacaoService notificacaoService) : base(dbContext)
         {
             _dbContext = dbContext;
             _notificacaoService = notificacaoService;

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using TechPet.Data.Maps;
+using TechPet.Data.Maps.Administracao;
+using TechPet.Data.Maps.Cadastros;
 using TechPet.Domain.Entities.Usuarios;
 using TechPet.Identity.Interfaces;
 
@@ -10,6 +11,7 @@ namespace TechPet.Data.Context
     {
         private readonly string _dataKey;
         private readonly IConfiguration _configuration;
+
         public TechPetContext(DbContextOptions<TechPetContext> options, IJwtService jwtService, IConfiguration configuration) : base(options)
         {
             _dataKey = jwtService.GetUserData() ?? "tech-pet";
@@ -24,6 +26,8 @@ namespace TechPet.Data.Context
 
             modelBuilder.ApplyConfiguration(new UsuarioMap());
             modelBuilder.ApplyConfiguration(new EmpresaMap());
+
+            modelBuilder.ApplyConfiguration(new CorDeVeiculoMap());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,6 +37,7 @@ namespace TechPet.Data.Context
                     connectionStr,
                     new MySqlServerVersion(new Version(8, 0, 29)));
         }
+
         public void UseDataBase(string nameDb)
         {
             var connectionStr = string.Format(_configuration.GetSection("ConnectionStrings:Mysql").Value, nameDb);

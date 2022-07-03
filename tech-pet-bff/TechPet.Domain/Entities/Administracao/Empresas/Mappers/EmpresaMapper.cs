@@ -1,6 +1,5 @@
 ﻿using TechPet.Domain.Entities.Empresas.Commands.IncluirEmpresa;
 using TechPet.Domain.Entities.Empresas.Results;
-using TechPet.Domain.ValueObjects.CnpjObject;
 
 namespace TechPet.Domain.Entities.Empresas.Mappers
 {

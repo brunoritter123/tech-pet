@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TechPet.Data.Context;
 
@@ -10,9 +11,10 @@ using TechPet.Data.Context;
 namespace TechPet.Data.Migrations
 {
     [DbContext(typeof(TechPetContext))]
-    partial class TechPetContextModelSnapshot : ModelSnapshot
+    [Migration("20220703201206_nome-da-migration-2")]
+    partial class nomedamigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

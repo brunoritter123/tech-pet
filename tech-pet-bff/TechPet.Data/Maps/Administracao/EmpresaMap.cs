@@ -4,7 +4,7 @@ using TechPet.Data.Abstractions;
 using TechPet.Domain.Entities.Empresas;
 using TechPet.Domain.ValueObjects.CnpjObject;
 
-namespace TechPet.Data.Maps
+namespace TechPet.Data.Maps.Administracao
 {
     public class EmpresaMap : EntityMapConfigure<Empresa, Guid>
     {

@@ -15,4 +15,36 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\Cadastros\Contatos\Commads\" />
+    <Folder Include="Entities\Cadastros\Contatos\Mappers\" />
+    <Folder Include="Entities\Cadastros\Contatos\Queries\" />
+    <Folder Include="Entities\Cadastros\Contatos\Repository\" />
+    <Folder Include="Entities\Cadastros\Contatos\Results\" />
+    <Folder Include="Entities\Cadastros\ModelosDeVeiculo\Commads\" />
+    <Folder Include="Entities\Cadastros\ModelosDeVeiculo\Mappers\" />
+    <Folder Include="Entities\Cadastros\ModelosDeVeiculo\Queries\" />
+    <Folder Include="Entities\Cadastros\ModelosDeVeiculo\Repository\" />
+    <Folder Include="Entities\Cadastros\ModelosDeVeiculo\Results\" />
+    <Folder Include="Entities\Cadastros\Produtos\Commads\" />
+    <Folder Include="Entities\Cadastros\Produtos\Mappers\" />
+    <Folder Include="Entities\Cadastros\Produtos\Queries\" />
+    <Folder Include="Entities\Cadastros\Produtos\Repository\" />
+    <Folder Include="Entities\Cadastros\Produtos\Results\" />
+    <Folder Include="Entities\Cadastros\Servicos\Commads\" />
+    <Folder Include="Entities\Cadastros\Servicos\Mappers\" />
+    <Folder Include="Entities\Cadastros\Servicos\Queries\" />
+    <Folder Include="Entities\Cadastros\Servicos\Repository\" />
+    <Folder Include="Entities\Cadastros\Servicos\Results\" />
+    <Folder Include="Entities\Cadastros\Veiculos\Commads\" />
+    <Folder Include="Entities\Cadastros\Veiculos\Mappers\" />
+    <Folder Include="Entities\Cadastros\Veiculos\Results\" />
+    <Folder Include="Entities\Cadastros\Veiculos\Repository\" />
+    <Folder Include="Entities\Cadastros\Veiculos\Queries\" />
+    <Folder Include="Entities\Vendas\OrdemDeServico\Commads\" />
+    <Folder Include="Entities\Vendas\OrdemDeServico\Mappers\" />
+    <Folder Include="Entities\Vendas\OrdemDeServico\Queries\" />
+    <Folder Include="Entities\Vendas\OrdemDeServico\Repository\" />
+  </ItemGroup>
+
 </Project>

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TechPet.Domain.Entities.Usuarios;
 
-namespace TechPet.Data.Maps
+namespace TechPet.Data.Maps.Administracao
 {
     public class UsuarioMap : IEntityTypeConfiguration<Usuario>
     {
