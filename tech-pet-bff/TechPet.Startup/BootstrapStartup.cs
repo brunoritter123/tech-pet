@@ -7,6 +7,7 @@ using TechPet.Identity;
 using TechPet.Startup.Configurations;
 using TechPet.UseCase;
 using TechPet.Application;
+using Prometheus;
 
 namespace TechPet.Startup
 {
@@ -38,6 +39,12 @@ namespace TechPet.Startup
             builder.Services.AddBootstrapUseCase();
             builder.Services.AddBootstrapIdentity(builder.Configuration);
             builder.Services.AddBootstrapIntegrationTests();
+        }
+
+        public static void AppStartup(this WebApplication app)
+        {
+            app.UseHttpMetrics();
+            app.UseMetricServer();
         }
     }
 }

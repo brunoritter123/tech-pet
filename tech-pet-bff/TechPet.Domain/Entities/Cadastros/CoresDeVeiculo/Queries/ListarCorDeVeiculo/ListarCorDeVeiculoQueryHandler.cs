@@ -4,7 +4,7 @@ using TechPet.Domain.Entities.Cadastros.CoresDeVeiculo.Results;
 using TechPet.Domain.Entities.Cadastros.CoresDeVeiculo.Mappers;
 using TechPet.Domain.Abstractions.Paginacao;
 
-namespace TechPet.Domain.Entities.Cadastros.CoresDeVeiculo.Commads
+namespace TechPet.Domain.Entities.Cadastros.CoresDeVeiculo.Queries.ListarCorDeVeiculo
 {
     public class ListarCorDeVeiculoQueryHandler : IRequestHandler<ListarCorDeVeiculoQuery, Page<CorDeVeiculoResult>>
     {

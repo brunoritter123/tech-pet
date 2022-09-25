@@ -5,12 +5,18 @@ namespace TechPet.Domain.Entities.Cadastros.CoresDeVeiculo
     public class CorDeVeiculo : Entity<short>
     {
         public const int TamanhoMaximoNome = 10;
-        public string Nome { get; set; }
+        public string Nome { get; private set; }
 
-        public CorDeVeiculo(short id, string nome)
+        public CorDeVeiculo(string nome)
         {
-            Id = id;
             Nome = nome;
+        }
+
+        public static CorDeVeiculo Create(short id, string nome)
+        {
+            var cor = new CorDeVeiculo(nome);
+            cor.Id = id;
+            return cor;
         }
 
         public override NomeAmigavelDaEntitidade GetNomeDaEntitidadeAmigavel()

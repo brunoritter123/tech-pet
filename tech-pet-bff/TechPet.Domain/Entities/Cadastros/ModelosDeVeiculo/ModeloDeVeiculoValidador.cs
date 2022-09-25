@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace TechPet.Domain.Entities.Cadastros.ModelosDeVeiculo
 {
-    internal class ModeloDeVeiculoValidador
+    public class ModeloDeVeiculoValidador : AbstractValidator<ModeloDeVeiculo>
     {
+        public ModeloDeVeiculoValidador()
+        {
+        }
     }
 }

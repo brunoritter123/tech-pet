@@ -60,8 +60,12 @@ namespace TechPet.Identity.Services
 
         public string? GetUserData()
         {
-            
             return _accessor?.HttpContext?.User.FindFirst(ClaimTypes.UserData)?.Value;
+        }
+
+        public bool IsAdmin()
+        {
+            return _accessor?.HttpContext?.User?.FindFirst(ClaimTypes.Role)?.Value != null; 
         }
     }
 }

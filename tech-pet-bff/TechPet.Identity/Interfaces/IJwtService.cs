@@ -12,5 +12,6 @@ namespace TechPet.Identity.Interfaces
     {
         string GenerateJWToken(User user, IEnumerable<string>? rolesAdicionais);
         string? GetUserData();
+        bool IsAdmin();
     }
 }

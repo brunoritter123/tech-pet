@@ -8,19 +8,19 @@ namespace TechPet.Data.Seeds
         {
             return new List<CorDeVeiculo>()
             {
-                new CorDeVeiculo(1, "Prata"),
-                new CorDeVeiculo(2, "Preto"),
-                new CorDeVeiculo(3, "Vermelho"),
-                new CorDeVeiculo(4, "Verde"),
-                new CorDeVeiculo(5, "Laranja"),
-                new CorDeVeiculo(6, "Azul"),
-                new CorDeVeiculo(7, "Branco"),
-                new CorDeVeiculo(8, "Cinza"),
-                new CorDeVeiculo(9, "Marrom"),
-                new CorDeVeiculo(10, "Bege"),
-                new CorDeVeiculo(11, "Dourado"),
-                new CorDeVeiculo(12, "Rosa"),
-                new CorDeVeiculo(13, "Roxo"),
+                CorDeVeiculo.Create(1, "Prata"),
+                CorDeVeiculo.Create(2, "Preto"),
+                CorDeVeiculo.Create(3, "Vermelho"),
+                CorDeVeiculo.Create(4, "Verde"),
+                CorDeVeiculo.Create(5, "Laranja"),
+                CorDeVeiculo.Create(6, "Azul"),
+                CorDeVeiculo.Create(7, "Branco"),
+                CorDeVeiculo.Create(8, "Cinza"),
+                CorDeVeiculo.Create(9, "Marrom"),
+                CorDeVeiculo.Create(10, "Bege"),
+                CorDeVeiculo.Create(11, "Dourado"),
+                CorDeVeiculo.Create(12, "Rosa"),
+                CorDeVeiculo.Create(13, "Roxo"),
             };
         }
     }

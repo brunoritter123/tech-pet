@@ -21,15 +21,20 @@ Acesse o arquivo appsettings.[Ambiente].json (Ambiente é conforme configurado n
 Execute `dotnet watch run --project TechPet.API/` para iniciar o servidor. Navegue em `http://localhost:5000/`. O aplicativo será recarregado automaticamente se você alterar qualquer um dos arquivos de origem.
 
 ## Criando migrations
-Execute `dotnet ef migrations add "nome-da-migration" --project ./TechPet.Data/ --startup-project ./TechPet.API/` para gerar uma nova *migration* do banco de dados.
-dotnet ef migrations add "nome-da-migration" --project ./TechPet.Identity/ --startup-project ./TechPet.API/ --context IdentityContext
-dotnet ef migrations add "nome-da-migration" --project ./TechPet.Data/ --startup-project ./TechPet.API/ --context TechPetContext
+Execute comando a baixo para gerar uma nova *migration* do banco de dados.
+```bash
+dotnet ef migrations add "nome-da-migration-identity" --project ./TechPet.Identity/ --startup-project ./TechPet.API/ --context IdentityContext
 
+dotnet ef migrations add "nome-da-migration-projeto" --project ./TechPet.Data/ --startup-project ./TechPet.API/ --context TechPetContext
+```
 
 ## Atualizando o banco de dados
-Execute `dotnet ef database update --project ./TechPet.Data/ --startup-project ./TechPet.API/` atulizando o banco de banco de dados com as migrations do projeto.
+Execute a baixo para atulizar o banco de banco de dados com as migrations do projeto.
+``` bash
 dotnet ef database update --project ./TechPet.Identity/ --startup-project ./TechPet.API/ --context IdentityContext
+
 dotnet ef database update --project ./TechPet.Data/ --startup-project ./TechPet.API/ --context TechPetContext
+```
 
 ## Build
 Execute `dotnet build tech-pet-bff.sln` para contruir os executaveis do projeto.

@@ -1,9 +1,9 @@
 version: '3'
 services:
-  mysql:
+  mysql-local:
     image: mysql:8.0.29
     command: --default-authentication-plugin=mysql_native_password
-    container_name: mysql
+    container_name: mysql-local
     volumes:
       - dbmysql-volume:/var/lib/mysql
       - ./dump:/docker-entrypoint-initdb.d

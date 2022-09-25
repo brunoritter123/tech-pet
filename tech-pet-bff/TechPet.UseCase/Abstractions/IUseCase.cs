@@ -4,4 +4,9 @@
     {
         Task<TResult?> ExecutarAsync(TRequest request);
     }
+
+    public interface IUseCase<TResult>
+    {
+        Task<TResult?> ExecutarAsync();
+    }
 }

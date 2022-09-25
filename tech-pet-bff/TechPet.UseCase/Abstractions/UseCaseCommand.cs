@@ -45,4 +45,21 @@ namespace TechPet.UseCase.Abstractions
         protected abstract Task<TResult?> AoExecutarAsync(TRequest request);
 
     }
+
+    public abstract class UseCaseCommand<TResult> : UseCaseCommand<bool, TResult>, IUseCase<TResult>
+    {
+        protected UseCaseCommand(INotificacaoService notificacaoService, IMediator mediator, IUnitOfWork unitOfWork, ILogger<UseCaseCommand<bool, TResult>> logger)
+           : base(notificacaoService, mediator, unitOfWork, logger)
+        {
+        }
+
+        public Task<TResult?> ExecutarAsync()
+            => base.ExecutarAsync(true);
+
+        protected override Task<TResult?> AoExecutarAsync(bool request)
+            => AoExecutarAsync();
+
+        protected abstract Task<TResult?> AoExecutarAsync();
+
+    }
 }

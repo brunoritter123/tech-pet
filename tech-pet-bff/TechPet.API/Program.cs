@@ -7,6 +7,8 @@ using TechPet.Startup;
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
+System.Console.WriteLine("Ambiente: " + builder.Environment.EnvironmentName);
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.AddBootstrapStartup();
@@ -54,12 +56,15 @@ builder.Services.AddMvc(x =>
     x.Filters.Add<ResultFilter>();
     x.Filters.Add<ExceptionFilter>();
     x.Filters.Add<HeadersFilter>();
+    x.Filters.Add<MetricsFilter>();
     x.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponse), StatusCodes.Status400BadRequest));
     x.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponse), StatusCodes.Status500InternalServerError));
 
 });
 
 var app = builder.Build();
+
+app.AppStartup();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Tests"))
