@@ -15,7 +15,6 @@ builder.AddBootstrapStartup();
 
 // Add services to the container.
 
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -59,7 +58,7 @@ builder.Services.AddMvc(x =>
     x.Filters.Add<MetricsFilter>();
     x.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponse), StatusCodes.Status400BadRequest));
     x.Filters.Add(new ProducesResponseTypeAttribute(typeof(ErrorResponse), StatusCodes.Status500InternalServerError));
-
+    x.Filters.Add(new JsonErrorActionFilter());
 });
 
 var app = builder.Build();
@@ -81,6 +80,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 
 app.Run();

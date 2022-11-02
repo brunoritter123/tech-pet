@@ -64,8 +64,26 @@ namespace TechPet.API.Responses
                         notificacao.DetalhamentoDaMensagem);
                 });
             }
+        }
 
-            
+        public ErrorResponse(List<Notificacao> notificacoes, NotificacaoTipo notificacaoTipo = NotificacaoTipo.Validacao, string tipo = "error")
+        {
+            Code = (short)notificacaoTipo;
+            Message = notificacoes.Last().Mensagem;
+            DetailedMessage = notificacoes.Last().DetalhamentoDaMensagem;
+            Type = tipo;
+
+            if (notificacoes.Count > 1)
+            {
+                notificacoes.RemoveAt(notificacoes.Count() - 1);
+                Details = notificacoes.Select(notificacao =>
+                {
+                    return new ErrorResponse(
+                        notificacao.Mensagem,
+                        notificacao.TipoDaNotificacao,
+                        notificacao.DetalhamentoDaMensagem);
+                });
+            }
         }
     }
 }
