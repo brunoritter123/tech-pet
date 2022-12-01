@@ -27,7 +27,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@totvs/po-theme/css/po-theme-default.min.css",
+              "node_modules/@totvs/po-theme/css/po-theme-default-variables.min.css",
+              "node_modules/@totvs/po-theme/css/po-theme-default.min.css",
+              "node_modules/@po-ui/style/css/po-theme-core.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -109,5 +111,7 @@
       }
     }
   },
-  "defaultProject": "tech-pet-front"
+  "cli": {
+    "analytics": "142865d5-e2a6-4486-9ad5-737780c5c9de"
+  }
 }
