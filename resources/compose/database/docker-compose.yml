@@ -1,12 +1,12 @@
 version: '3'
 services:
-  mysql-local:
+  mysql-tech-pet:
     image: mysql:8.0.29
     command: --default-authentication-plugin=mysql_native_password
-    container_name: mysql-local
+    container_name: mysql-tech-pet
     volumes:
-      - dbmysql-volume:/var/lib/mysql
-      - ./dump:/docker-entrypoint-initdb.d
+      - dbmysql-volume:/var/lib/mysql:Z
+      - ./dump:/docker-entrypoint-initdb.d:Z
     restart: always
     ports:
       - 3306:3306

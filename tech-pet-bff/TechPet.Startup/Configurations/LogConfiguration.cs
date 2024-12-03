@@ -13,6 +13,7 @@ namespace TechPet.Startup.Configurations
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Warning()
                 .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+                .MinimumLevel.Override("TechPet", LogEventLevel.Information)
                 .Enrich.FromLogContext()
                 .Enrich.WithExceptionDetails()
                 .Enrich.WithCorrelationIdHeader()

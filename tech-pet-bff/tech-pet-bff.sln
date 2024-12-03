@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechPet.IntegrationTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechPet.Application", "TechPet.Application\TechPet.Application.csproj", "{0512B161-362D-4CEE-ABFB-17FC760B8F26}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7D011AE6-A95E-47BD-96D2-26119E58D694}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,5 +70,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4683AC2E-802E-40A0-9004-2A269A269189}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E1AB7C32-B908-40F8-AAE2-F9670F954F80} = {7D011AE6-A95E-47BD-96D2-26119E58D694}
 	EndGlobalSection
 EndGlobal

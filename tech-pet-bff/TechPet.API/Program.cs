@@ -71,8 +71,11 @@ if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Tests"))
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    app.UseHttpsRedirection();
+}
 
-app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
 

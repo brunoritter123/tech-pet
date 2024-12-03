@@ -120,6 +120,7 @@ namespace TechPet.Identity.Services
 
         public async Task<ResultadoIdentityDto> ValidarSenhaAsync(User user, string senha)
         {
+            // await _userManager.AddPasswordAsync(user, "teste");
             var result = await _singInManager.CheckPasswordSignInAsync(user, senha, false);
             if (result.Succeeded)
                 return new ResultadoIdentityDto();

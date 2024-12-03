@@ -18,6 +18,7 @@ namespace TechPet.Data.Context
             _configuration = configuration;
         }
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
