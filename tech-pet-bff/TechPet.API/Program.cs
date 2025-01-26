@@ -15,22 +15,22 @@ builder.AddBootstrapStartup();
 
 // Add services to the container.
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins(
-                              "http://localhost:4200",
-                              "https://localhost:4200",
-                              "http://localhost:4200/",
-                              "https://localhost:4200/")
-                            .SetIsOriginAllowedToAllowWildcardSubdomains()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader()
-                            .AllowCredentials();
-                      });
-});
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy(name: MyAllowSpecificOrigins,
+//                       policy =>
+//                       {
+//                           policy.WithOrigins(
+//                               "http://localhost:4200",
+//                               "https://localhost:4200",
+//                               "http://localhost:4200/",
+//                               "https://localhost:4200/")
+//                             .SetIsOriginAllowedToAllowWildcardSubdomains()
+//                             .AllowAnyMethod()
+//                             .AllowAnyHeader()
+//                             .AllowCredentials();
+//                       });
+// });
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

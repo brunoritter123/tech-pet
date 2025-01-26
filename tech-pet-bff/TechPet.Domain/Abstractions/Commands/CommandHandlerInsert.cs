@@ -17,8 +17,7 @@ namespace TechPet.Domain.Abstractions.Commands
     {
         protected readonly IRepository<TEntity, TEntityId> _repository;
 
-        protected CommandHandlerInsert(INotificacaoService notificacaoService, IRepository<TEntity, TEntityId> repository)
-            : base (notificacaoService)
+        protected CommandHandlerInsert(IRepository<TEntity, TEntityId> repository)
         {
             _repository = repository;
         }

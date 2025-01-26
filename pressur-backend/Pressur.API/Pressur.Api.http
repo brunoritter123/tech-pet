@@ -1,0 +1,20 @@
+@host = http://localhost:5000
+
+### Authorization by token, Retrieve and save token.
+POST {{host}}/api/v1/Identity/Login HTTP/1.1
+Content-Type: application/json
+Accept: */*
+Content-Length: 81
+
+{
+	"login": "comum@hotmail.com",
+	"password":"dGVzdGU=",
+	"rememberUser": true
+}
+> {% client.global.set("auth_token", response.body.token); %}
+
+### Get Cor de veiculo
+GET {{host}}/api/v1/corDeVeiculo HTTP/1.1
+Authorization: Bearer {{auth_token}}
+
+

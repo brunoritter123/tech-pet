@@ -1,9 +1,9 @@
 version: '3'
 services:
-  mysql-tech-pet:
+  mysql-pressur:
     image: mysql:8.0.29
     command: --default-authentication-plugin=mysql_native_password
-    container_name: mysql-tech-pet
+    container_name: mysql-pressur
     volumes:
       - dbmysql-volume:/var/lib/mysql:Z
       - ./dump:/docker-entrypoint-initdb.d:Z
@@ -16,7 +16,7 @@ services:
      MYSQL_RANDOM_ROOT_PASSWORD: 1
      MYSQL_USER: mysql
      MYSQL_PASSWORD: 123456
-     MYSQL_DATABASE: tech-pet
+     MYSQL_DATABASE: pressur
 
 volumes:
   dbmysql-volume:

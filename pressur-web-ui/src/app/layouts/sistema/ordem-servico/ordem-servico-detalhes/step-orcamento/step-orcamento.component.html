@@ -1,0 +1,186 @@
+<po-widget
+  class="po-md-12"
+>
+  <div class="po-row">
+    <po-button
+      class="po-offset-xl-9 po-offset-lg-9 po-offset-md-9 po-md-3"
+      p-icon="po-icon-plus-circle"
+      p-label="Adicionar Item"
+      (p-click)="openModalAddItem(modalItem, comboItem)"
+    > </po-button>
+  </div>
+  <po-table
+    p-container="shadow"
+    [p-items]="itemsOs"
+    [p-columns]="columns"
+    [p-striped]="true"
+    [p-auto-collapse]="true"
+  >
+    <ng-template
+      p-table-row-template
+      let-rowItem
+      let-i="rowIndex"
+      [p-table-row-template-arrow-direction]="arrowDirection"
+      [p-table-row-template-show]="showEditRow"
+    >
+      <po-container>
+        <div class="po-row">
+          <po-radio-group
+          class="po-sm-6"
+          name="tipoItem"
+          p-label="Incluir:"
+          [p-required]="true"
+          [(ngModel)]="tipoItem"
+          [p-options]="[
+            { label: 'Serviço', value: 1 },
+            { label: 'Produto', value: 2 }
+          ]">
+          </po-radio-group>
+
+          <po-input
+            class="po-sm-6"
+            name="responsavelItem"
+            p-clean
+            [(ngModel)]="responsavelItem"
+            p-icon="po-icon-user"
+            p-label="Responsável"
+            p-placeholder="Responsável"
+            [p-optional] = "true">
+          </po-input>
+        </div>
+        <div class="po-row">
+          <po-combo
+            #comboItem
+            class="po-md-6"
+            (keyup)="alteracaoServico($event)"
+            [p-change-on-enter]="true"
+            p-label="Item"
+            name="comboItem"
+            [p-options]="opcoesServicos"
+            p-placeholder="Item"
+            [p-required]="true" >
+          </po-combo>
+          <po-number
+            class="po-md-3"
+            name="quantidadeItem"
+            p-label="Qtd"
+            p-step="1"
+            [(ngModel)]="rowItem.qtd"
+            p-placeholder="Qtd">
+          </po-number>
+          <po-decimal
+            class="po-md-3"
+            name="valorItem"
+            [(ngModel)]="rowItem.valor"
+            [p-decimals-length]="2"
+            p-icon="po-icon-finance"
+            p-label="Valor"
+            p-placeholder="Valor"
+            p-required
+            [p-thousand-maxlength]="13">
+          </po-decimal>
+        </div>
+      </po-container>
+    </ng-template>
+  </po-table>
+
+  <po-divider></po-divider>
+  <div class="po-row">
+    <po-info
+      class="po-md-6 po-mb-sm-2 po-mb-md-2 po-lb-lg-2"
+      p-label="Valor Total"
+      [p-orientation]="orientacaoInfo"
+      p-value="{{ 1700 | currency }}"
+    ></po-info>
+  </div>
+  <po-divider></po-divider>
+
+  <div class="po-row">
+    <po-textarea
+      class="po-md-6"
+      name="laudoTecnico"
+      p-label="Laudo Técnico"
+      p-help="Laudo técnico sobre o problema do veiculo"
+      [p-optional] = "true">
+    </po-textarea>
+    <po-textarea
+      class="po-md-6"
+      name="laudoTecnicoInternas"
+      p-label="Laudo Técnico Interno"
+      p-help="Observações importantes que não vão sair na impressão da ordem de serviço"
+      [p-optional] = "true">
+    </po-textarea>
+  </div>
+</po-widget>
+
+<po-modal #modalItem
+  [p-click-out]="false"
+  p-size="xl"
+  [p-hide-close]="true"
+  p-title="Incluir Item">
+  <po-container>
+    <div class="po-row">
+      <po-radio-group
+      class="po-sm-6"
+      name="tipoItem"
+      p-label="Incluir:"
+      [p-required]="true"
+      [(ngModel)]="tipoItem"
+      [p-options]="[
+        { label: 'Serviço', value: 1 },
+        { label: 'Produto', value: 2 }
+      ]">
+      </po-radio-group>
+
+      <po-input
+        class="po-sm-6"
+        name="responsavelItem"
+        p-clean
+        [(ngModel)]="responsavelItem"
+        p-icon="po-icon-user"
+        p-label="Responsável"
+        p-placeholder="Responsável"
+        [p-optional] = "true">
+      </po-input>
+    </div>
+    <div class="po-row">
+      <po-combo
+        #comboItem
+        class="po-md-6 po-sm-12"
+        (keyup)="alteracaoServico($event)"
+        [p-change-on-enter]="true"
+        p-label="Item"
+        name="comboItem"
+        [p-options]="opcoesServicos"
+        p-placeholder="Item"
+        [p-required]="true" >
+      </po-combo>
+      <po-number
+        class="po-md-3 po-sm-6"
+        name="quantidadeItem"
+        p-label="Qtd"
+        p-step="1"
+        p-placeholder="Qtd">
+      </po-number>
+      <po-decimal
+        class="po-md-3 po-sm-6"
+        name="valorItem"
+        [(ngModel)]="valorItem"
+        [p-decimals-length]=2
+        p-icon="po-icon-finance"
+        p-label="Valor"
+        p-placeholder="Valor"
+        p-required
+        [p-thousand-maxlength]="13">
+      </po-decimal>
+    </div>
+  </po-container>
+  <po-modal-footer>
+    <po-button p-label="Fechar" (p-click)="fecharModal(modalItem)"> </po-button>
+    <po-button
+      p-label="Incluir Item"
+      p-kind="primary"
+      p-icon="po-icon-plus-circle"
+      (p-click)="addItem(comboItem)"> </po-button>
+  </po-modal-footer>
+</po-modal>
